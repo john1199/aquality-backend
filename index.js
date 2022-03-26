@@ -1,18 +1,17 @@
 const express = require("express");
-const auth = require('./routes/auth');
-const user = require('./routes/user');
-const resorces = require('./routes/waterResources');
+const conectarDB = require("./database");
 const app = express();
+require("dotenv").config();
 
-async function main(){
-  //body parser
-  app.use(express.json()); 
-  auth(app);
-  user(app);
-  resorces(app);
+const PORT = process.env.PORT || 4000;
 
-  await app.listen(4000);
-  console.log(`Listening http://localhost:${4000}`);
-}
+conectarDB();
+app.use(express.json());//body parser
 
-main();
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/user", require("./routes/user"));
+app.use("/api/waterresources", require("./routes/waterResources"));
+
+app.listen(PORT, () => {
+    console.log(`Listening http://localhost:${4000}`);
+});
