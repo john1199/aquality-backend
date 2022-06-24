@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/", async function (req, res) {
     try {
         const waterResources = await WaterResource.find();
-        return res.status(200).json({ resources: waterResources, msg: "Sin errores" });
+        return res.status(200).json(waterResources);
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
@@ -19,7 +19,7 @@ router.get("/:name", async function (req, res) {
     try {
         const { name } = req.params;
         const waterResource = await WaterResourcesService.getResources({ name });
-        return res.status(200).json({ resources: waterResource, msg: "Sin errores" });
+        return res.status(200).json(waterResource);
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
@@ -110,3 +110,4 @@ router.delete("/:waterResourcesId", async function (req, res) {
 });
 
 module.exports = router;
+
