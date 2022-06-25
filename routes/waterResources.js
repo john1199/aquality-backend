@@ -21,7 +21,7 @@ router.get("/:name", async function (req, res) {
         const { name } = req.params;
         const waterResource = await WaterResourcesService.getResources({ name });
         res.status(200);
-        res.send(waterResources);
+        res.send(waterResource);
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
