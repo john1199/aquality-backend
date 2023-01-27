@@ -68,7 +68,7 @@ router.put(
             const { waterResourcesId } = req.params;
             const { body: waterResource } = req;
             console.log(waterResource);
-            const fuente = await waterServices.get({ waterResourcesId });
+            const fuente = await WaterResourcesService.get({ waterResourcesId });
 
             if (fuente) {
                 const resorceId = await WaterResourcesService.updateResources({
